@@ -1,7 +1,7 @@
 package org.bbop.apollo
 
 import grails.util.Pair
-import org.codehaus.groovy.grails.web.json.JSONException
+import org.grails.web.json.JSONException
 import org.grails.web.json.JSONObject
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

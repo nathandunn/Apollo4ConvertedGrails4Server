@@ -3,7 +3,6 @@ package org.bbop.apollo.sequence
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.filefilter.NameFileFilter
 import org.apache.commons.io.filefilter.TrueFileFilter
-import org.bbop.apollo.AnnotationException
 
 /**
  * Created by ndunn on 10/29/14.
@@ -78,7 +77,7 @@ class SequenceTranslationHandler {
     public static String translateSequence(String sequence, TranslationTable translationTable,
                                            boolean includeStop, boolean translateThroughStop) {
 //        if (sequence.length() % 3 != 0) {
-//            throw new AnnotationException("Sequence to be translated must have length of factor of 3");
+//            throw new Exception("Sequence to be translated must have length of factor of 3");
 //        }
         StringBuilder buffer = new StringBuilder();
         String upperString = sequence.toUpperCase()
@@ -114,14 +113,14 @@ class SequenceTranslationHandler {
      *
      * @param code - NCBI translation table code
      * @return TranslationTable for the NCBI translation table code
-     * @throws AnnotationException - If an invalid NCBI translation table code is used
+     * @throws Exception - If an invalid NCBI translation table code is used
      */
-    public static TranslationTable getTranslationTableForGeneticCode(String code) throws AnnotationException {
+    public static TranslationTable getTranslationTableForGeneticCode(String code) throws Exception {
         if (!translationTables.containsKey(code)) {
             initTranslationTables(code);
         }
         if (code < DEFAULT_TRANSLATION_TABLE || !translationTables.containsKey(code)) {
-            throw new AnnotationException("Invalid translation table code");
+            throw new Exception("Invalid translation table code");
         }
         return translationTables.get(code);
     }
