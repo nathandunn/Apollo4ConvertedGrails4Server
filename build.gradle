@@ -33,6 +33,14 @@ configurations {
 }
 
 dependencies {
+
+    // custom
+    compile group: 'com.github.samtools', name: 'htsjdk', version: '2.21.2'
+    compile 'commons-codec:commons-codec:1.2'
+    compile 'commons-collections:commons-collections:3.2.1'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    //
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile "org.springframework.boot:spring-boot-autoconfigure"
@@ -71,6 +79,17 @@ dependencies {
     testCompile "org.seleniumhq.selenium:selenium-support:3.14.0"
     testRuntime "org.seleniumhq.selenium:selenium-chrome-driver:3.14.0"
     testRuntime "org.seleniumhq.selenium:selenium-firefox-driver:3.14.0"
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src/groovy']
+        }
+        java {
+            srcDirs = ['src/java', 'src/gwt']
+        }
+    }
 }
 
 bootRun {
