@@ -10,8 +10,9 @@ buildscript {
     }
 }
 
+
 version "0.1"
-group "apolloconvertgrails4server"
+group "org.bbop.apollo"
 
 apply plugin:"eclipse"
 apply plugin:"idea"
@@ -20,6 +21,7 @@ apply plugin:"org.grails.grails-web"
 apply plugin:"com.github.erdi.webdriver-binaries"
 apply plugin:"com.bertramlabs.asset-pipeline"
 apply plugin:"org.grails.grails-gsp"
+apply plugin:"application"
 
 repositories {
     maven { url "https://repo.grails.org/grails/core" }
@@ -31,6 +33,21 @@ configurations {
         extendsFrom developmentOnly
     }
 }
+mainClassName = 'apolloconvertgrails4server.Application'
+
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src/groovy']
+        }
+        java {
+            srcDirs = ['src/java', 'src/gwt']
+        }
+    }
+}
+
+
 
 dependencies {
 
@@ -81,18 +98,9 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-firefox-driver:3.14.0"
 }
 
-sourceSets {
-    main {
-        groovy {
-            srcDirs = ['src/groovy']
-        }
-        java {
-            srcDirs = ['src/java', 'src/gwt']
-        }
-    }
-}
 
 bootRun {
+//    mainClassName = 'apolloconvertgrails4server.Application'
     ignoreExitValue true
     jvmArgs(
         '-Dspring.output.ansi.enabled=always', 
